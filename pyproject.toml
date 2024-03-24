@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "gaia-ws-llm"
+version = "0.1.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+packages = [
+    { include = "llm-finetune", from = "." },
+    {include = "prompt", from = "."},
+    {include = "rag", from = "."},
+]
+
+
+[tool.poetry.dependencies]
+python = "^3.12"
+openai = "^1.14.2"
+jupyter = "^1.0.0"
+langchain = "^0.1.13"
+datasets = "^2.18.0"
+transformers = "^4.39.1"
+trl = "^0.8.1"
+python-dotenv = "^1.0.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
