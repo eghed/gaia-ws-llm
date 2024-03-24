@@ -8,3 +8,4 @@ evaluate
 torch
 numpy
 scikit-learn
+chardet
