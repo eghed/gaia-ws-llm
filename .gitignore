@@ -159,5 +159,7 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 .idea/
 
-
-data/
+# LLM fine tune:
+llm-finetune/data/
+llm-finetune/sft_train/
+llm-finetune/dpo_train/
