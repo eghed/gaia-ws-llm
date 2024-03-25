@@ -12,7 +12,7 @@ from trl import DPOTrainer, SFTTrainer
 # https://huggingface.co/blog/dpo-trl
 
 # device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-device = torch.device("cpu")
+# device = torch.device("cpu")
 
 #
 # Dataset ARGS:
@@ -21,12 +21,11 @@ ds_name = "MaestroDmitry/stack-exchange-paired-shorted"
 
 #
 # Model Args:
-# model_path = "/media/kloek/ubu_data/Models/HuggingFace/gpt-neo-1.3B"
-model_path = "/media/kloek/ubu_data/Models/HuggingFace/Prajna-gpt-neo-1.3B-fitbot"  # TODO TMP https://huggingface.co/Prajna1999/Prajna-gpt-neo-1.3B-fitbot
+model_path = "/media/kloek/ubu_data/Models/HuggingFace/gpt-neo-1.3B"
 # model_path = "/media/kloek/ubu_data/Models/HuggingFace/Mistral-7B-Instruct-v0.2"
 # model_path = "/media/kloek/ubu_data/Models/HuggingFace/Mistral-7B-v0.1"
 # model_path = "TinyPixel/Llama-2-7B-bf16-sharded"
-# model_path = "meta-llama/Llama-2-7b-hf"
+# model_path = "meta-llama/Llama-2-7b-hf"  # Need permisions for LLama model
 
 # For saved sft model:
 model_name_or_path = "TODO"
