@@ -20,6 +20,10 @@ datasets = "^2.18.0"
 transformers = "^4.39.1"
 trl = "^0.8.1"
 python-dotenv = "^1.0.1"
+langchain-openai = "^0.1.1"
+wikipedia = "^1.4.0"
+chromadb = "^0.4.24"
+langchainhub = "^0.1.15"
 
 
 [build-system]
