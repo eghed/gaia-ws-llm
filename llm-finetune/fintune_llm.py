@@ -42,8 +42,8 @@ lora_dropout = 0.0
 sft_training_args: Optional[TrainingArguments] = TrainingArguments(
     output_dir="model/sft_train",
     # use_cpu=True,
-    per_device_train_batch_size=4,
-    per_gpu_eval_batch_size=4,
+    per_device_train_batch_size=2,
+    per_gpu_eval_batch_size=2,
 )
 
 #
@@ -52,8 +52,8 @@ dpo_beta: float = 0.1
 dpo_training_args: Optional[TrainingArguments] = TrainingArguments(
     output_dir="model/dpo_train",
     # use_cpu=True,
-    per_device_train_batch_size=4,  # TODO DPO seems to use one model / gpu, so i can up this!
-    per_gpu_eval_batch_size=4,
+    per_device_train_batch_size=1,  # TODO DPO seems to use one model / gpu, so i can up this!
+    per_gpu_eval_batch_size=1,
 )
 
 
@@ -85,24 +85,17 @@ dataset = load_dataset(
     cache_dir="data"
 )
 
-train_dataset = dataset['train']
-test_dataset = dataset['test']
-
 print("\n - remapping datasets for DPO")
-# TODO copy paste
-dpo_train_dataset = train_dataset.map(
+
+dataset = dataset.map(
     function=return_prompts_and_responses,
     batched=True,
     with_indices=False,
     remove_columns=train_dataset.column_names
 )
 
-dpo_test_dataset = test_dataset.map(
-    function=return_prompts_and_responses,
-    batched=True,
-    with_indices=False,
-    remove_columns=test_dataset.column_names
-)
+train_dataset = dataset['train']
+test_dataset = dataset['test']
 
 
 
@@ -124,7 +117,7 @@ bnb_config = BitsAndBytesConfig(
 print("\n - loading pretrained model")
 base_model = AutoModelForCausalLM.from_pretrained(
     model_path,
-    # quantization_config=bnb_config,
+    quantization_config=bnb_config,
     device_map='auto',  # {"": 0},
     trust_remote_code=True,
     # use_auth_token=True,
