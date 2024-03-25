@@ -127,6 +127,7 @@ base_model = AutoModelForCausalLM.from_pretrained(
     device_map='auto',  # {"": 0},
     trust_remote_code=True,
     # use_auth_token=True,
+    cache_dir="model/base"
 )
 
 base_model.config.use_cache = False
