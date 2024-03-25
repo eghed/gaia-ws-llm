@@ -163,3 +163,5 @@ cython_debug/
 llm-finetune/data/
 llm-finetune/sft_train/
 llm-finetune/dpo_train/
+
+.lightning_studio/
