@@ -160,6 +160,7 @@ cython_debug/
 .idea/
 
 # LLM fine tune:
+llm-finetune/model/
 llm-finetune/data/
 llm-finetune/sft_train/
 llm-finetune/dpo_train/

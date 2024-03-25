@@ -21,7 +21,8 @@ ds_name = "MaestroDmitry/stack-exchange-paired-shorted"
 
 #
 # Model Args:
-model_path = "/media/kloek/ubu_data/Models/HuggingFace/gpt-neo-1.3B"
+model_path = "EleutherAI/gpt-neo-1.3B"
+# model_path = "/media/kloek/ubu_data/Models/HuggingFace/gpt-neo-1.3B"
 # model_path = "/media/kloek/ubu_data/Models/HuggingFace/Mistral-7B-Instruct-v0.2"
 # model_path = "/media/kloek/ubu_data/Models/HuggingFace/Mistral-7B-v0.1"
 # model_path = "TinyPixel/Llama-2-7B-bf16-sharded"
@@ -39,7 +40,7 @@ lora_dropout = 0.0
 #
 # SFT ARGS:
 sft_training_args: Optional[TrainingArguments] = TrainingArguments(
-    output_dir="sft_train",
+    output_dir="model/sft_train",
     # use_cpu=True,
     per_device_train_batch_size=4,
     per_gpu_eval_batch_size=4,
@@ -49,10 +50,10 @@ sft_training_args: Optional[TrainingArguments] = TrainingArguments(
 # DPO ARGS:
 dpo_beta: float = 0.1
 dpo_training_args: Optional[TrainingArguments] = TrainingArguments(
-    output_dir="dpo_train",
+    output_dir="model/dpo_train",
     # use_cpu=True,
-    per_device_train_batch_size=2,  # TODO DPO seems to use one model / gpu, so i can up this!
-    per_gpu_eval_batch_size=2,
+    per_device_train_batch_size=4,  # TODO DPO seems to use one model / gpu, so i can up this!
+    per_gpu_eval_batch_size=4,
 )
 
 
@@ -123,7 +124,7 @@ bnb_config = BitsAndBytesConfig(
 print("\n - loading pretrained model")
 base_model = AutoModelForCausalLM.from_pretrained(
     model_path,
-    quantization_config=bnb_config,
+    # quantization_config=bnb_config,
     device_map='auto',  # {"": 0},
     trust_remote_code=True,
     # use_auth_token=True,
@@ -173,7 +174,7 @@ peft_config = LoraConfig(
     bias="none",
     task_type="CAUSAL_LM",
 )
-"""
+
 
 print("\n - SFTTrainer")
 trainer = SFTTrainer(
@@ -189,7 +190,9 @@ trainer = SFTTrainer(
 
 )
 print("\n trainer.train()")
-trainer.train()"""
+trainer.train()
+
+1/0
 
 #############################################################################################
 # DPO Training
