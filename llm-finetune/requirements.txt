@@ -9,3 +9,4 @@ torch
 numpy
 scikit-learn
 chardet
+lightning
