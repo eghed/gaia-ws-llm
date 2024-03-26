@@ -1,8 +1,12 @@
 datasets
 transformers
+bitsandbytes
+accelerate
 trl
-
-# --index-url https://download.pytorch.org/whl/cpu
-# torch
-# torchvision
-# torchaudio
+peft
+evaluate
+torch
+numpy
+scikit-learn
+chardet
+lightning

@@ -1,0 +1,7 @@
+conda create --name gaiaws_gpu python=3.12 pip
+
+conda activate gaiaws_gpu
+
+pip install -r requirements.txt
+
+conda install pytorch==2.2.0 torchvision==0.17.0 torchaudio==2.2.0 pytorch-cuda=12.1 -c pytorch -c nvidia
