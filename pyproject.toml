@@ -24,6 +24,7 @@ langchain-openai = "^0.1.1"
 wikipedia = "^1.4.0"
 chromadb = "^0.4.24"
 langchainhub = "^0.1.15"
+nbconvert = "^7.16.3"
 
 
 [build-system]
